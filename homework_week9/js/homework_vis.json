@@ -1,6 +1,6 @@
 {
 	"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-	"title": "COVID-19 CO2 Cases (10 Oct 2020)",
+	"title": "COVID-19 Life Expectancy World Banks (10 Oct 2020)",
 	"width": 800,
 	"height": 400,
 	"projection": { "type": "equalEarth" },
@@ -13,27 +13,25 @@
             "lookup": "properties.NAME",
             "from": {
                 "data": {
-                    "url": "https://raw.githubusercontent.com/dnav0/FIT3179/main/homework_week9/data/life_expectancy.csv"
+                    "url": "https://raw.githubusercontent.com/dnav0/FIT3179/main/homework_week9/data/old/life_expectancy.csv"
                 },
                 "key": "Country",
-                "fields": ["CO2", "year"]
+                "fields": ["Life Expectancy World Bank"]
             }
         },
-        { "filter": "datum.year === 2017" },
-        { "filter": "datum.CO2 !== null" },
-        { "calculate": "datum.CO2 + 0.1", "as": "CO2 Cases" }
+        { "calculate": "datum['Life Expectancy World Bank'] + 1", "as": "Adjusted Life Expectancy World Bank" }
     ],
     
 	"mark": { "type": "geoshape" },
 	"encoding": {
 		"color": {
-			"field": "CO2 Cases",
+			"field": "Adjusted Life Expectancy World Bank",
 			"type": "quantitative",
 			"scale": { "type": "linear" }
 		},
 		"tooltip": [
 			{ "field": "properties.NAME", "type": "nominal", "title": "Country" },
-			{ "field": "CO2", "type": "quantitative" }
+			{ "field": "Life Expectancy World Bank", "type": "quantitative", "title": "Life Expectancy World Bank" }
 		]
 	}
 }
