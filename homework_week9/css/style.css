@@ -1,0 +1,10 @@
+h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+#maps {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
