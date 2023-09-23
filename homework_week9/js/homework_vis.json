@@ -5,7 +5,7 @@
 	"height": 400,
 	"projection": { "type": "equalEarth" },
 	"data": {
-		"url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/3_choropleth_map/js/ne_110m_admin_0_countries.topojson",
+		"url": "https://raw.githubusercontent.com/dnav0/FIT3179/main/homework_week9/js/ne_110m.topojson",
 		"format": { "type": "topojson", "feature": "ne_110m_admin_0_countries" }
 	},
     "transform": [
