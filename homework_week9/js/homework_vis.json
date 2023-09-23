@@ -3,7 +3,7 @@
     "title": "COVID-19 Life Expectancy World Banks (10 Oct 2020)",
     "width": 800,
     "height": 400,
-    "projection": { "type": "equalEarth" },
+    "projection": { "type": "equirectangular" },
     "layer": [
         {
             "data": {
