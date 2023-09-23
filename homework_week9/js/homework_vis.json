@@ -1,37 +1,47 @@
 {
-	"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-	"title": "COVID-19 Life Expectancy World Banks (10 Oct 2020)",
-	"width": 800,
-	"height": 400,
-	"projection": { "type": "equalEarth" },
-	"data": {
-		"url": "https://raw.githubusercontent.com/dnav0/FIT3179/main/homework_week9/js/ne_110m.topojson",
-		"format": { "type": "topojson", "feature": "ne_110m_admin_0_countries" }
-	},
-    "transform": [
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "COVID-19 Life Expectancy World Banks (10 Oct 2020)",
+    "width": 800,
+    "height": 400,
+    "projection": { "type": "equalEarth" },
+    "layer": [
         {
-            "lookup": "properties.NAME",
-            "from": {
-                "data": {
-                    "url": "https://raw.githubusercontent.com/dnav0/FIT3179/main/homework_week9/data/old/life_expectancy.csv"
-                },
-                "key": "Country",
-                "fields": ["Life Expectancy World Bank"]
-            }
+            "data": {
+                "url": "https://raw.githubusercontent.com/dnav0/FIT3179/main/homework_week9/js/ne_110m.topojson",
+                "format": { "type": "topojson", "feature": "ne_110m_graticules_30" }
+            },
+            "mark": { "type": "geoshape", "stroke": "lightgray", "fill": null }
         },
-        { "calculate": "datum['Life Expectancy World Bank'] + 1", "as": "Adjusted Life Expectancy World Bank" }
-    ],
-    
-	"mark": { "type": "geoshape" },
-	"encoding": {
-		"color": {
-			"field": "Adjusted Life Expectancy World Bank",
-			"type": "quantitative",
-			"scale": { "type": "linear" }
-		},
-		"tooltip": [
-			{ "field": "properties.NAME", "type": "nominal", "title": "Country" },
-			{ "field": "Life Expectancy World Bank", "type": "quantitative", "title": "Life Expectancy World Bank" }
-		]
-	}
+        {
+            "data": {
+                "url": "https://raw.githubusercontent.com/dnav0/FIT3179/main/homework_week9/js/ne_110m.topojson",
+                "format": { "type": "topojson", "feature": "ne_110m_admin_0_countries" }
+            },
+            "transform": [
+                {
+                    "lookup": "properties.NAME",
+                    "from": {
+                        "data": {
+                            "url": "https://raw.githubusercontent.com/dnav0/FIT3179/main/homework_week9/data/old/life_expectancy.csv"
+                        },
+                        "key": "Country",
+                        "fields": ["Life Expectancy World Bank"]
+                    }
+                },
+                { "calculate": "datum['Life Expectancy World Bank'] + 1", "as": "Adjusted Life Expectancy" }
+            ],
+            "mark": { "type": "geoshape" },
+            "encoding": {
+                "color": {
+                    "field": "Adjusted Life Expectancy",
+                    "type": "quantitative",
+                    "scale": { "type": "linear", "scheme": "lightmulti"}
+                },
+                "tooltip": [
+                    { "field": "properties.NAME", "type": "nominal", "title": "Country" },
+                    { "field": "Life Expectancy World Bank", "type": "quantitative", "title": "Life Expectancy World Bank" }
+                ]
+            }
+        }
+    ]
 }
