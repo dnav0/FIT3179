@@ -1,0 +1,183 @@
+{
+	"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "Average Hepatitis B, Measles, Polio, and Diphtheria Vaccination Rates by Region",
+	"data": {
+		"url": "https://raw.githubusercontent.com/dnav0/FIT3179/main/homework_week9/data/health_statistics.csv"
+	},
+	"transform": [
+		{
+			"fold": ["Hepatitis_B", "Measles", "Polio", "Diphtheria"],
+			"as": ["Disease", "Value"]
+		},
+		{
+			"aggregate": [{ "op": "mean", "field": "Value", "as": "Average Value" }],
+			"groupby": ["Year", "Region", "Disease"]
+		}
+	],
+	"facet": {
+		"field": "Disease",
+		"type": "nominal",
+		"header": { "titleOrient": "top", "labelOrient": "top" }
+	},
+	"spec": {
+		"width": 300,
+		"height": 300,
+		"layer": [
+			{
+				"params": [
+					{
+						"name": "selectedRegion",
+						"select": { "type": "point", "fields": ["Region"] },
+						"bind": "legend"
+					}
+				],
+				"mark": "line",
+				"encoding": {
+					"x": {
+						"field": "Year",
+						"type": "quantitative",
+						"title": "Year",
+						"axis": {
+							"format": "d"
+						}
+					},
+					"y": {
+						"field": "Average Value",
+						"type": "quantitative",
+						"scale": {
+							"zero": false
+						}
+					},
+					"color": { "field": "Region", "type": "nominal", "title": "Region" },
+					"opacity": {
+						"condition": [
+							{
+								"test": {
+									"and": [
+										{ "param": "selectedRegion" },
+										{
+											"field": "Region",
+											"equal": { "param": "selectedRegion" }
+										}
+									]
+								},
+								"value": 1
+							},
+							{
+								"test": { "param": "selectedRegion", "empty": true },
+								"value": 1
+							}
+						],
+						"value": 0.2
+					}
+				}
+			},
+			{
+				"data": {
+					"url": "https://raw.githubusercontent.com/dnav0/FIT3179/main/homework_week9/data/health_statistics.csv",
+					"format": { "type": "csv" }
+				},
+				"transform": [
+					{
+						"fold": ["Hepatitis_B", "Measles", "Polio", "Diphtheria"],
+						"as": ["Disease", "Value"]
+					},
+					{
+						"aggregate": [
+							{ "op": "mean", "field": "Value", "as": "Average Value" }
+						],
+						"groupby": ["Year", "Region", "Disease"]
+					},
+					{
+						"pivot": "Region",
+						"value": "Average Value",
+						"groupby": ["Year", "Disease"]
+					}
+				],
+				"mark": "rule",
+				"encoding": {
+					"x": {
+						"field": "Year",
+						"type": "quantitative",
+						"axis": {
+							"format": "d"
+						}
+					},
+					"opacity": {
+						"condition": { "value": 0.3, "param": "hover", "empty": false },
+						"value": 0
+					},
+					"tooltip": [
+						{ "field": "Year", "type": "quantitative", "title": "Year" },
+						{
+							"field": "Africa",
+							"type": "quantitative",
+							"title": "Africa",
+							"format": ".2f"
+						},
+						{
+							"field": "Asia",
+							"type": "quantitative",
+							"title": "Asia",
+							"format": ".2f"
+						},
+						{
+							"field": "Central America and Caribbean",
+							"type": "quantitative",
+							"title": "Central America and Caribbean",
+							"format": ".2f"
+						},
+						{
+							"field": "European Union",
+							"type": "quantitative",
+							"title": "European Union",
+							"format": ".2f"
+						},
+						{
+							"field": "Middle East",
+							"type": "quantitative",
+							"title": "Middle East",
+							"format": ".2f"
+						},
+						{
+							"field": "North America",
+							"type": "quantitative",
+							"title": "North America",
+							"format": ".2f"
+						},
+						{
+							"field": "Oceania",
+							"type": "quantitative",
+							"title": "Oceania",
+							"format": ".2f"
+						},
+						{
+							"field": "Rest of Europe",
+							"type": "quantitative",
+							"title": "Rest of Europe",
+							"format": ".2f"
+						},
+						{
+							"field": "South America",
+							"type": "quantitative",
+							"title": "South America",
+							"format": ".2f"
+						}
+					]
+				},
+				"params": [
+					{
+						"name": "hover",
+						"select": {
+							"type": "point",
+							"fields": ["Year"],
+							"nearest": true,
+							"on": "mouseover",
+							"clear": "mouseout"
+						}
+					}
+				]
+			}
+		]
+	}
+}
