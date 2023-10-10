@@ -1,6 +1,6 @@
 {
 	"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "title": "Average Hepatitis B, Measles, Polio, and Diphtheria Vaccination Rates by Region",
+	"title": "Average Hepatitis B, Measles, Polio, and Diphtheria Vaccination Rates by Region",
 	"data": {
 		"url": "https://raw.githubusercontent.com/dnav0/FIT3179/main/homework_week9/data/health_statistics.csv"
 	},
@@ -20,8 +20,7 @@
 		"header": { "titleOrient": "top", "labelOrient": "top" }
 	},
 	"spec": {
-		"width": 300,
-		"height": 300,
+		"width": "container",
 		"layer": [
 			{
 				"params": [
@@ -48,7 +47,14 @@
 							"zero": false
 						}
 					},
-					"color": { "field": "Region", "type": "nominal", "title": "Region" },
+					"color": {
+						"field": "Region",
+						"type": "nominal",
+						"title": "Region",
+						"legend": {
+							"orient": "bottom"
+						}
+					},
 					"opacity": {
 						"condition": [
 							{

@@ -1,5 +1,5 @@
 h1 {
-    font-size: 36px;
+    font-size: 30px;
     font-weight: bold;
     text-align: center;
     color: #333;
@@ -22,6 +22,12 @@ body {
 
 .vis-container {
     width: 100%;
+    text-align: center;
+}
+
+.vis-container-2 {
+    width: 20%;
+    text-align: center;
 }
 
 .description h2,
