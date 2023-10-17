@@ -1,0 +1,106 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 400,
+    "height": 400,
+    "title": "Life Expectancy vs GDP",
+    "data": {
+      "url": "https://raw.githubusercontent.com/dnav0/FIT3179/main/data_vis_2/data/health_statistics.csv"
+    },
+    "params": [
+        {
+            "name": "Population_Above",
+            "value": 0,
+            "bind": {
+                "input": "range",
+                "min": 0,
+                "max": 330,
+                "step": 1,
+                "name": "Minimum Population (in millions): "
+            }
+        }
+,        
+      {
+        "name": "Region_selection",
+        "bind": {
+          "input": "select",
+          "options": [
+            null,
+            "Africa",
+            "Asia",
+            "Central America and Caribbean",
+            "European Union",
+            "Middle East",
+            "North America",
+            "Oceania",
+            "Rest of Europe",
+            "South America"
+          ],
+          "name": "Region Selection: "
+        }
+      },
+      {
+        "name": "LifeExpectancy_Above",
+        "value": 35,
+        "bind": {
+          "input": "range",
+          "min": 35,
+          "max": 83,
+          "step": 1,
+          "name": "Minimum Life Expectancy: "
+        }
+      }
+    ],
+    "transform": [
+        {
+            "filter": "datum.Population_mln * 1000000 > Population_Above * 1000000"
+        }
+        ,
+      {
+        "filter": "Region_selection == null || datum.Region == Region_selection"
+      },
+      {
+        "filter": "datum.Life_expectancy > LifeExpectancy_Above"
+      }
+    ],
+    "encoding": {
+      "x": {
+        "field": "GDP_per_capita",
+        "type": "quantitative",
+        "title": "GDP per Capita"
+      },
+      "y": {
+        "field": "Life_expectancy",
+        "type": "quantitative",
+        "title": "Life Expectancy",
+        "scale": {"domainMin": {"expr": "LifeExpectancy_Above"}}
+      },
+      "size": {
+        "field": "Population_mln",
+        "type": "quantitative",
+        "scale": {
+          "type": "threshold",
+          "domain": [1, 10, 50, 100, 500],
+          "range": [10, 50, 150, 200, 300, 400]
+        },
+        "legend": {"format": ".1s"}
+      },
+      "color": {
+        "field": "Region",
+        "type": "nominal"
+      },
+      "opacity": {"value": 0.6}
+    },
+    "layer": [
+      {
+        "mark": "circle",
+        "encoding": {
+          "tooltip": [
+            {"field": "Country", "type": "nominal"},
+            {"field": "GDP_per_capita", "type": "quantitative", "format": ","},
+            {"field": "Life_expectancy", "type": "quantitative", "format": ","},
+            {"field": "Population_mln", "type": "quantitative", "format": ".2f"}
+          ]
+        }
+      }
+    ]
+}

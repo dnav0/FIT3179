@@ -1,7 +1,7 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.1.0.json",
     "title": {
-      "text": "Rank of Country of Birth of Oversea residents",
+      "text": "Top 5 countries with the highest BMI",
       "color": "navy",
       "fontSize": 22,
       "align": "center",
@@ -12,8 +12,8 @@
       "subtitleFontSize": 18,
       "subtitlePadding": 5
     },
-    "width": 400,
-    "height": 400,
+    "width": 300,
+    "height": 300,
     "data": {
       "url": "https://raw.githubusercontent.com/dnav0/FIT3179/main/data_vis_2/data/health_statistics.csv",
       "format": {"type": "csv"}
