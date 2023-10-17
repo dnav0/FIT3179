@@ -12,10 +12,10 @@
       "subtitleFontSize": 18,
       "subtitlePadding": 5
     },
-    "width": 500,
-    "height": 500,
+    "width": 400,
+    "height": 400,
     "data": {
-      "url": "https://raw.githubusercontent.com/dnav0/FIT3179/main/data_vis_2/data/top10_bmi.csv",
+      "url": "https://raw.githubusercontent.com/dnav0/FIT3179/main/data_vis_2/data/health_statistics.csv",
       "format": {"type": "csv"}
     },
     "transform": [
@@ -41,7 +41,6 @@
           }
         }
       ],
-      
       
     "encoding": {
         "x": {
