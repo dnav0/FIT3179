@@ -1,6 +1,6 @@
 {
 	"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-	"title": "Average Hepatitis B, Measles, Polio, and Diphtheria Vaccination Rates by Region",
+	"background": "transparent",
 	"data": {
 		"url": "https://raw.githubusercontent.com/dnav0/FIT3179/main/homework_week9/data/health_statistics.csv"
 	},
@@ -12,12 +12,27 @@
 		{
 			"aggregate": [{ "op": "mean", "field": "Value", "as": "Average Value" }],
 			"groupby": ["Year", "Region", "Disease"]
+		},
+		{
+			"window": [
+				{
+					"op": "max",
+					"field": "Average Value",
+					"as": "MaxAverage"
+				}
+			],
+			"frame": [null, null],
+			"groupby": ["Disease"]
+		},
+		{
+			"calculate": "datum['Average Value'] === datum.MaxAverage ? datum.Year : null",
+			"as": "HighlightYear"
 		}
 	],
 	"facet": {
 		"field": "Disease",
 		"type": "nominal",
-		"header": { "titleOrient": "top", "labelOrient": "top" }
+		"title": null
 	},
 	"spec": {
 		"width": "container",
@@ -43,6 +58,7 @@
 					"y": {
 						"field": "Average Value",
 						"type": "quantitative",
+						"title": "Average Immunisations (%)",
 						"scale": {
 							"zero": false
 						}
@@ -52,7 +68,8 @@
 						"type": "nominal",
 						"title": "Region",
 						"legend": {
-							"orient": "bottom"
+							"orient": "bottom",
+							"columns": 5
 						}
 					},
 					"opacity": {
@@ -183,6 +200,40 @@
 						}
 					}
 				]
+			},
+			{
+				"mark": "rule",
+				"encoding": {
+					"x": {
+						"field": "HighlightYear",
+						"type": "quantitative"
+					},
+					"color": { "value": "red" }
+				}
+			},
+			{
+				"mark": {
+					"type": "text",
+					"align": "right",
+					"baseline": "middle",
+					"dx": -5,
+					"dy": 150
+				},
+				"encoding": {
+					"x": {
+						"field": "HighlightYear",
+						"type": "quantitative"
+					},
+					"y": {
+						"aggregate": "mean",
+						"field": "Average Value",
+						"type": "quantitative"
+					},
+					"text": {
+						"value": "Highest total year"
+					},
+					"color": { "value": "red" }
+				}
 			}
 		]
 	}

@@ -1,7 +1,7 @@
 {
 	"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-	"title": "Life Expectancy around the World (2001-2019)",
 	"width": "container",
+	"background": "transparent",
 	"projection": {
 		"type": "equalEarth"
 	},
@@ -53,8 +53,8 @@
 					}
 				},
 				{
-					"calculate": "datum['Life Expectancy World Bank'] + 1",
-					"as": "Life Expectancy (years)"
+					"calculate": "datum['Life Expectancy World Bank'] ? datum['Life Expectancy World Bank'] + 1 : null",
+					"as": "Life Expectancy (Years)"
 				}
 			],
 			"mark": {
@@ -62,19 +62,11 @@
 			},
 			"encoding": {
 				"color": {
-					"field": "Life Expectancy (years)",
+					"field": "Life Expectancy (Years)",
 					"type": "quantitative",
 					"scale": {
-						"type": "threshold",
-						"domain": [50, 60, 70, 80, 90],
-						"range": [
-							"#fae6d1",
-							"#fdc58e",
-							"#fc9e58",
-							"#e86e32",
-							"#d43d00",
-							"#8b2800"
-						]
+						"domain": [50, 90],
+						"range": ["#e5f5e0", "#31a354"]
 					},
 					"legend": {
 						"orient": "bottom"
@@ -87,9 +79,52 @@
 						"title": "Country"
 					},
 					{
-						"field": "Life Expectancy World Bank",
+						"field": "Life Expectancy (Years)",
 						"type": "quantitative",
-						"title": "Life Expectancy (years)"
+						"title": "Life Expectancy (Years)"
+					}
+				]
+			}
+		},
+		{
+			"data": {
+				"url": "https://raw.githubusercontent.com/dnav0/FIT3179/main/homework_week9/js/ne_110m.topojson",
+				"format": {
+					"type": "topojson",
+					"feature": "ne_110m_admin_0_countries"
+				}
+			},
+			"transform": [
+				{
+					"lookup": "properties.NAME",
+					"from": {
+						"data": {
+							"url": "https://raw.githubusercontent.com/dnav0/FIT3179/main/homework_week9/data/old/life_expectancy.csv"
+						},
+						"key": "Country",
+						"fields": ["Life Expectancy World Bank"]
+					}
+				},
+				{
+					"filter": "datum['Life Expectancy World Bank'] == null"
+				},
+				{
+					"calculate": "'Data is not available in ' + datum.properties.NAME",
+					"as": "note"
+				}
+			],
+			"mark": {
+				"type": "geoshape"
+			},
+			"encoding": {
+				"color": {
+					"value": "#ddd"
+				},
+				"tooltip": [
+					{
+						"field": "note",
+						"type": "nominal",
+						"title": "Availability"
 					}
 				]
 			}

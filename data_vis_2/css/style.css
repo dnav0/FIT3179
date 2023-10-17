@@ -1,15 +1,31 @@
 h1 {
     font-size: 30px;
-    font-weight: bold;
+    font-weight: bolder;
     text-align: center;
-    color: #333;
+    color: #000682;
     text-transform: uppercase;
     letter-spacing: 2px;
     margin-top: 50px;
 }
 
+h2 {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    color: #002868;
+    text-transform: capitalize;
+    letter-spacing: 1.5px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #000682;
+    padding-bottom: 10px;
+}
+
+
 body {
     background-color: lightgray;
+    font-family: Open Sans, sans-serif;
 }
 
 .page {
@@ -22,11 +38,15 @@ body {
 
 .vis-container {
     width: 100%;
+    max-width: 800px;
+    margin: auto;
     text-align: center;
 }
 
 .vis-container-2 {
     width: 20%;
+    max-width: 800px;
+    margin: auto;
     text-align: center;
 }
 
@@ -43,10 +63,74 @@ h1 {
     padding-right: 20px;
 }
 
-.pure-g {
-    margin-bottom: 40px;
-}
-
 .small-font {
     font-size: 14px;
+}
+
+.page {
+    max-width: 1200px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.pure-g {
+    padding: 15px;
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 16px;
+    /* Optimal size for readability */
+    line-height: 1.6;
+    /* Spacing between lines for better readability */
+    color: #333;
+    /* Slightly dark shade for text */
+    margin-bottom: 20px;
+    /* Space below paragraphs for separation */
+    text-align: justify;
+    /* Justified alignment for a polished look */
+    hyphens: auto;
+    /* Automatic hyphenation for better word breaks */
+    word-wrap: break-word;
+    /* Ensures words break properly in smaller screens */
+    max-width: 800px;
+    /* Ensures text doesn't stretch too wide on larger screens, aiding readability */
+    margin-left: auto;
+    /* Together with the next line, it centers the text container */
+    margin-right: auto;
+}
+
+/* If you want the first paragraph after an h2 to have a different style, you can use the adjacent sibling combinator */
+h2+p {
+    font-weight: semi-bold;
+    /* Make the first paragraph a bit bolder for emphasis */
+    margin-top: 10px;
+    /* Reduce space between the title and the first paragraph */
+}
+
+h3 {
+    font-family: 'Open Sans', sans-serif;
+    /* Use your preferred font family */
+    font-size: 12px;
+    /* Adjust the font size as needed */
+    font-weight: bold;
+    text-align: center;
+    color: #002868;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+
+@media (max-width: 768px) {
+    .page {
+        width: 90%;
+        padding: 25px;
+    }
+
+    .pure-g>.pure-u-1-2 {
+        width: 100%;
+    }
 }

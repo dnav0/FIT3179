@@ -16,31 +16,32 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 		<link rel="stylesheet" href="css/style.css" />
-
-		<title>Health and life expectancy across the globe</title>
+		<link
+			href="https://fonts.googleapis.com/css?family=Open+Sans"
+			rel="stylesheet"
+		/>
+		<title>Health across the world</title>
 	</head>
 	<body>
 		<div class="page">
-			<h1>HEALTH AND LIFE EXPECTANCY ACROSS THE GLOBE</h1>
+			<h1>HEALTH ACROSS THE world</h1>
 			<div class="pure-g">
 				<div class="pure-u-1-2">
 					<div class="description description-left">
 						<h2>Life Expectancy</h2>
 						<p>
-							Life expectancy is an important indicator of the overall health of
-							a population. It is influenced by various factors such as access
-							to healthcare, lifestyle, and environmental conditions.
-						</p>
-						<br />
-						<p>
-							Some countries have a life expectancy of over 80 years, while
-							others have a life expectancy of less than 60 years. It is
-							important to understand these differences and work towards
-							improving the health and well-being of people across the globe.
+							Life expectancy serves as a vital measure of a population's
+							overall health and well-being. Influenced by factors such as
+							healthcare access, lifestyle choices, and environmental
+							conditions, disparities exist worldwide. Some nations achieve life
+							expectancies surpassing 80 years, whereas others lag behind at
+							under 60 years. It's imperative to grasp these differences and
+							collaboratively strive to elevate health standards globally.
 						</p>
 					</div>
 				</div>
 				<div class="pure-u-1-2">
+					<h3>Life Expectancy around the World (2001-2019)</h3>
 					<div id="choropleth_map" class="vis-container"></div>
 				</div>
 			</div>
@@ -49,33 +50,75 @@
 				<div class="pure-u-1-1">
 					<div class="description">
 						<h2>Diseases</h2>
+						<p style="text-align: center">
+							Visualising vaccination rates globally highlights regions needing
+							improvement.
+						</p>
+					</div>
+					<h3>
+						Average Hepatitis B, Measles, Polio, and Diphtheria Vaccination
+						Rates by Region
+					</h3>
+					<div id="multiples" class="vis-container-2"></div>
+				</div>
+			</div>
+
+			<div class="pure-g">
+				<div class="pure-u-1-2">
+					<h3>Top 10 Countries with the Highest BMI</h3>
+					<div id="bump_chart" class="vis-container"></div>
+				</div>
+				<div class="pure-u-1-2">
+					<div class="description description-right">
+						<h2>BMI</h2>
 						<p>
-							By visualizing the vaccination rates across different regions, we
-							can identify areas where vaccination rates are low and take steps
-							to improve them. The graph can also help us understand the impact
-							of vaccination campaigns and policies on the overall health of
-							populations. With this information, we can work towards achieving
-							better health outcomes for people across the globe.
+							Exploring the trends of the top 10 countries with the highest BMI
+							over the years provides a glimpse into the overall fitness and
+							weight management of countries. As dietary habits, lifestyle
+							choices, and health policies shift, this bump chart provides an
+							insight into how nations grapple with weight-related health
+							challenges. Understanding these patterns can guide global health
+							initiatives and awareness campaigns. <br /><br />Evidently, some
+							countries seem to top the charts year after year, which may
+							suggest either lifestyle issues or a lack of awareness. In
+							contrast, other countries seem to be improving their BMI over the
+							years, which may suggest that they are taking steps to improve
+							their health.
 						</p>
 					</div>
 				</div>
 			</div>
 
 			<div class="pure-g">
-				<div class="pure-u-1-1">
-					<div id="bar_chart" class="vis-container-2"></div>
-				</div>
-			</div>
+				<div class="pure-u-1-2">
+					<div class="description description-left">
+						<h2>Life Expectancy vs GDP</h2>
+						<p>
+							The relationship between a nation's GDP and the life expectancy of
+							its citizens is complex. This bubble chart compares GDP with life
+							expectancy, highlighting that while economic prosperity often
+							correlates with better health outcomes, it's not the sole
+							determinant. Multiple factors influence the health and longevity
+							of populations, emphasising the diverse challenges in global
+							health.
 
-			<div class="pure-g">
-				<div class="pure-u-1-1">
-					<div id="bump_chart" class="vis-container-2"></div>
-				</div>
-			</div>
+							<br /><br />The bubble chart also highlights the differences
+							between regions, where it seems that some continents such as
+							Africa generally sit on the lower end of both life expectancy as
+							well as GDP per capita. This suggests that as a whole, improved
+							wealth can definitely help increase the potential for better life
+							expectancies.
 
-			<div class="pure-g">
-				<div class="pure-u-1-1">
-					<div id="bubble_plot" class="vis-container-2"></div>
+							<br /><br />However, it is also important to note that on the
+							higher end, countries with similar GDP per capita still have
+							differing life expectancies. This may be due to other external
+							factors.
+						</p>
+					</div>
+				</div>
+				<div class="pure-u-1-2" style="font-size: 14px; font-family: open sans">
+					<h3>Life Expectancy vs GDP per capita</h3>
+					<div id="bubble_plot" class="vis-container"></div>
 				</div>
 			</div>
 		</div>
