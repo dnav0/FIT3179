@@ -34,7 +34,7 @@
           "lookup": "Country",
           "from": {
             "data": {
-              "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/7_others/BumpChart/flags.csv"
+              "url": "https://raw.githubusercontent.com/dnav0/FIT3179/main/data_vis_2/data/flags.csv"
             },
             "key": "Country",
             "fields": ["ImageURL"]
