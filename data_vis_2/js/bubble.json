@@ -51,7 +51,7 @@
 		},
 		{
 			"name": "LifeExpectancy_Above",
-			"value": 35,
+			"value": 60,
 			"bind": {
 				"input": "range",
 				"min": 35,

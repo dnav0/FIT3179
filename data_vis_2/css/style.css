@@ -1,7 +1,7 @@
 h1 {
     font-size: 30px;
     font-weight: bolder;
-    text-align: center;
+    text-align: center !important;
     color: #000682;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -30,7 +30,7 @@ body {
 
 .page {
     width: 60%;
-    background-color: white;
+    background-color: rgb(90, 96, 165);
     margin: auto;
     padding: 50px;
     padding-top: 35px;
@@ -48,6 +48,10 @@ body {
     max-width: 800px;
     margin: auto;
     text-align: center;
+}
+
+.footer {
+    font-size: 12px;
 }
 
 .description h2,
@@ -77,45 +81,41 @@ h1 {
 .pure-g {
     padding: 15px;
     background-color: #f7f7f7;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     margin-bottom: 20px;
 }
 
+#header {
+    padding: 10px;
+    padding-bottom: 1px;
+    background-color: #f7f7f7;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
 p {
     font-size: 16px;
-    /* Optimal size for readability */
     line-height: 1.6;
-    /* Spacing between lines for better readability */
     color: #333;
-    /* Slightly dark shade for text */
     margin-bottom: 20px;
-    /* Space below paragraphs for separation */
     text-align: justify;
-    /* Justified alignment for a polished look */
     hyphens: auto;
-    /* Automatic hyphenation for better word breaks */
     word-wrap: break-word;
-    /* Ensures words break properly in smaller screens */
     max-width: 800px;
-    /* Ensures text doesn't stretch too wide on larger screens, aiding readability */
     margin-left: auto;
-    /* Together with the next line, it centers the text container */
     margin-right: auto;
 }
 
-/* If you want the first paragraph after an h2 to have a different style, you can use the adjacent sibling combinator */
 h2+p {
     font-weight: semi-bold;
-    /* Make the first paragraph a bit bolder for emphasis */
     margin-top: 10px;
-    /* Reduce space between the title and the first paragraph */
 }
 
 h3 {
     font-family: 'Open Sans', sans-serif;
-    /* Use your preferred font family */
     font-size: 12px;
-    /* Adjust the font size as needed */
     font-weight: bold;
     text-align: center;
     color: #002868;
