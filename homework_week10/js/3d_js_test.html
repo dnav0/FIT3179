@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Homework Week 9</title>
+		<script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+		<script src="https://d3js.org/d3.v5.min.js"></script>
+		<!-- Link to your custom CSS file -->
+		<link rel="stylesheet" href="css/style.css" />
+	</head>
+
+	<body>
+		<h1>Homework Week 9</h1>
+		<div id="maps">
+			<div id="choropleth_map"></div>
+		</div>
+		<!-- <div id="svgStage"></div> -->
+		<svg></svg>
+		<button id="bar">To Bars</button>
+		<button id="pie">To Pie</button>
+		<select id="countrySelector"></select>
+
+		<select id="yearSelector"></select>
+
+		<button id="updateChart">Update Chart</button>
+
+		<!-- <script>
+			//Select SVG element
+			var svg = d3.select("svg");
+
+			//Create rectangle element inside SVG
+			svg
+				.append("rect")
+				.attr("x", 50)
+				.attr("y", 50)
+				.attr("width", 200)
+				.attr("height", 100)
+				.attr("fill", "green");
+		</script> -->
+
+		<script>
+			(function () {
+				// This is the initialization of your chart
+				var width = 750;
+				var height = width / 2;
+				var margin = 20;
+				var radius = (height - margin * 2) / 2;
+				var pie = d3.pie().value(function (d) {
+					return d;
+				});
+				var arc = d3
+					.arc()
+					.outerRadius(radius)
+					.innerRadius(radius / 4);
+
+				// Replace your svg selection to match with the provided script
+				var svg = d3
+					.select("#choropleth_map")
+					.append("svg")
+					.attr("width", width + margin * 2)
+					.attr("height", height + margin * 2);
+				var g = svg
+					.append("g")
+					.attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+				var paths;
+
+				d3.csv("data/health_statistics.csv").then(function (fullDataset) {
+					var selectedData = fullDataset.find(function (d) {
+						return d.Country === "Australia" && d.Year === "2010";
+					});
+
+					var values = [
+						selectedData.Measles,
+						selectedData.Hepatitis_B,
+						selectedData.Diphtheria,
+					].map(Number);
+
+					paths = g
+						.selectAll("path")
+						.data(pie(values))
+						.enter()
+						.append("path")
+						.attr("fill", function (d, i) {
+							return ["red", "green", "blue"][i];
+						});
+
+					// Initially, let's display the pie chart
+					toPie();
+				});
+
+				var toPie = function () {
+					paths
+						.transition()
+						.duration(1000)
+						.attrTween("d", function (d) {
+							var i = d3.interpolate(this._current, d);
+							this._current = i(0);
+							return function (t) {
+								return arc(i(t));
+							};
+						});
+				};
+
+				var toBars = function () {
+					paths
+						.transition()
+						.duration(1000)
+						.attr("d", function (d, index, value) {
+							var cord = {
+								tl: [0, (10 - index) * 20],
+								tr: [d.data * 2, (10 - index) * 20], // Tweaked the data multiplication for better visualization
+								br: [d.data * 2, (10 - index) * 20 - 20],
+								bl: [0, (10 - index) * 20 - 20],
+							};
+							return (
+								"M" +
+								cord.tl +
+								"L" +
+								cord.tr +
+								"L" +
+								cord.br +
+								"L" +
+								cord.bl +
+								"Z"
+							);
+						});
+				};
+
+				document.getElementById("bar").addEventListener("click", toBars);
+				document.getElementById("pie").addEventListener("click", toPie);
+			}).call(this);
+		</script>
+	</body>
+</html>

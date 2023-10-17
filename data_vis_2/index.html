@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+
+		<script src="js/visualisations.js"></script>
+
+		<link
+			rel="stylesheet"
+			href="https://unpkg.com/purecss@2.0.3/build/pure-min.css"
+			integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ"
+			crossorigin="anonymous"
+		/>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<link rel="stylesheet" href="css/style.css" />
+
+		<title>Health and life expectancy across the globe</title>
+	</head>
+	<body>
+		<div class="page">
+			<h1>HEALTH AND LIFE EXPECTANCY ACROSS THE GLOBE</h1>
+			<div class="pure-g">
+				<div class="pure-u-1-2">
+					<div class="description description-left">
+						<h2>Life Expectancy</h2>
+						<p>
+							Life expectancy is an important indicator of the overall health of
+							a population. It is influenced by various factors such as access
+							to healthcare, lifestyle, and environmental conditions.
+						</p>
+						<br />
+						<p>
+							Some countries have a life expectancy of over 80 years, while
+							others have a life expectancy of less than 60 years. It is
+							important to understand these differences and work towards
+							improving the health and well-being of people across the globe.
+						</p>
+					</div>
+				</div>
+				<div class="pure-u-1-2">
+					<div id="choropleth_map" class="vis-container"></div>
+				</div>
+			</div>
+
+			<div class="pure-g">
+				<div class="pure-u-1-1">
+					<div class="description">
+						<h2>Diseases</h2>
+						<p>
+							By visualizing the vaccination rates across different regions, we
+							can identify areas where vaccination rates are low and take steps
+							to improve them. The graph can also help us understand the impact
+							of vaccination campaigns and policies on the overall health of
+							populations. With this information, we can work towards achieving
+							better health outcomes for people across the globe.
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="pure-g">
+				<div class="pure-u-1-1">
+					<div id="bar_chart" class="vis-container-2"></div>
+				</div>
+			</div>
+
+			<div class="pure-g">
+				<div class="pure-u-1-1">
+					<div id="bump_chart" class="vis-container-2"></div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
